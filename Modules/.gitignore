@@ -1,0 +1,7 @@
+*
+!.gitignore
+!README.md
+!modules.json
+!modules.yml
+!modules.ps1
+!PowerShell.Modules.psd1
