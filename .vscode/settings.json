@@ -1,0 +1,109 @@
+{
+    // =============================================================================
+    // COPILOT CONFIGURATION
+    // =============================================================================
+    "chat.agent.enabled": true,
+    "chat.modeFilesLocations": {
+        "chatmodes": true
+    },
+    "chat.promptFilesLocations": {
+        "prompts": true
+    },
+    "chat.instructionsFilesLocations": {
+        "instructions": true
+    },
+    // =============================================================================
+    // TERMINAL CONFIGURATION
+    // =============================================================================
+    "terminal.integrated.profiles.windows": {
+        "PowerShell (NoProfile)": {
+            "source": "PowerShell",
+            "args": [
+                "-NoProfile"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell (NoProfile)",
+    // =============================================================================
+    // GENERAL EDITOR SETTINGS
+    // =============================================================================
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-vscode.powershell",
+    "editor.rulers": [ 100 ],
+    // =============================================================================
+    // FILE HANDLING & ASSOCIATIONS
+    // =============================================================================
+    "files.defaultLanguage": "powershell",
+    "files.encoding": "utf8",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true
+    },
+    "files.associations": {
+        "*.ps1": "powershell",
+        "*.psm1": "powershell",
+        "*.psd1": "powershell",
+        "*.ps1xml": "xml",
+        "*.pssc": "powershell",
+        "*.chatmode.md": "markdown",
+        "*.instructions.md": "markdown",
+        "*.prompt.md": "markdown"
+    },
+    // =============================================================================
+    // POWERSHELL-SPECIFIC EDITOR SETTINGS
+    // =============================================================================
+    "[powershell]": {
+        "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+        "editor.semanticHighlighting.enabled": false,
+        "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+        "editor.defaultFormatter": "ms-vscode.powershell"
+    },
+    // =============================================================================
+    // MARKDOWN EXTENSION CONFIGURATION
+    // =============================================================================
+    "markdown.extension.toc.updateOnSave": true,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    // =============================================================================
+    // POWERSHELL EXTENSION CONFIGURATION
+    // =============================================================================
+    "powershell.enableProfileLoading": true,
+    "powershell.scriptAnalysis.enable": true,
+    "powershell.buttons.showPanelMovementButtons": true,
+    "powershell.debugging.createTemporaryIntegratedConsole": true,
+    // =============================================================================
+    // POWERSHELL CODE FORMATTING
+    // =============================================================================
+    "powershell.codeFormatting.preset": "OTBS",
+    "powershell.codeFormatting.openBraceOnSameLine": true,
+    "powershell.codeFormatting.newLineAfterCloseBrace": true,
+    "powershell.codeFormatting.useConstantStrings": true,
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    // =============================================================================
+    // PESTER TESTING CONFIGURATION
+    // =============================================================================
+    "powershell.pester.codeLens": false,
+    "powershell.pester.useLegacyCodeLens": false,
+    "powershell.pester.outputVerbosity": "Detailed",
+    "powershell.pester.debugOutputVerbosity": "Detailed",
+    // =============================================================================
+    // XML SCHEMA ASSOCIATIONS
+    // =============================================================================
+    "xml.fileAssociations": [
+        {
+            "systemId": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd",
+            "pattern": "**/*.Format.ps1xml"
+        },
+        {
+            "systemId": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Types.xsd",
+            "pattern": "**/*.Types.ps1xml"
+        }
+    ],
+    "kiroAgent.configureMCP": "Disabled"
+}

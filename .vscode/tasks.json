@@ -1,0 +1,55 @@
+{
+    "$schema": "vscode://schemas/tasks",
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "pwsh.exe",
+                "args": [
+                    "-NoProfile",
+                    "-NoLogo",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-Command"
+                ]
+            }
+        }
+    },
+    "linux": {
+        "options": {
+            "shell": {
+                "executable": "pwsh",
+                "args": [
+                    "-NoProfile",
+                    "-Command"
+                ]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "label": "Run PowerShell Script",
+            "detail": "Runs a PowerShell script.",
+            "type": "shell",
+            "command": "${input:scriptPath}"
+        },
+        {
+            "label": "Update Help",
+            "detail": "Runs Update-Help to update PowerShell help files.",
+            "type": "shell",
+            "command": "Update-Help -Force -ErrorAction SilentlyContinue"
+        },
+        {
+            "label": "PSScriptAnalyzer",
+            "detail": "Runs PSScriptAnalyzer to analyze PowerShell scripts.",
+            "type": "shell",
+            "command": "Invoke-ScriptAnalyzer -Path ${workspaceFolder} -Recurse -Exclude *.Tests.ps1"
+        },
+        {
+            "label": "Pester",
+            "detail": "Runs Pester tests.",
+            "type": "shell",
+            "command": "Invoke-Pester"
+        }
+    ]
+}

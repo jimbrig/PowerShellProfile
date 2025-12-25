@@ -1,0 +1,92 @@
+{
+    "mcpServers": {
+        "exa": {
+            "type": "http",
+            "url": "https://mcp.exa.ai/mcp?exaApiKey=${input:exa_api_key}",
+            "envFile": "${workspaceFolder}/.cursor/mcp.env",
+            "env": {
+                "EXA_API_KEY": "${input:exa_api_key}"
+            }
+        },
+        "tavily": {
+            "type": "http",
+            "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=${input:tavily_api_key}",
+            "envFile": "${workspaceFolder}/.cursor/mcp.env",
+            "env": {
+                "TAVILY_API_KEY": "${input:tavily_api_key}"
+            }
+        },
+        "repomix": {
+            "type": "stdio",
+            "command": "bunx",
+            "args": [
+                "-y",
+                "repomix",
+                "--mcp"
+            ]
+        },
+        "context7": {
+            "type": "http",
+            "url": "https://mcp.context7.com/mcp",
+            "headers": {
+                "CONTEXT7_API_KEY": "${input:context7_api_key}"
+            },
+            "envFile": "${workspaceFolder}/.cursor/mcp.env",
+            "env": {
+                "CONTEXT7_API_KEY": "${env:CONTEXT7_API_KEY}"
+            }
+        },
+        "deepwiki": {
+            "type": "stdio",
+            "command": "bunx",
+            "args": [
+                "-y",
+                "mcp-deepwiki@latest"
+            ]
+        },
+        "raindrop": {
+            "type": "stdio",
+            "command": "bunx",
+            "args": [
+                "-y",
+                "@adeze/raindrop-mcp@latest"
+            ],
+            "env": {
+                "RAINDROP_ACCESS_TOKEN": "${input:raindrop_access_token}"
+            },
+            "envFile": "${workspaceFolder}/.cursor/mcp.env"
+        }
+    },
+    "inputs": [
+        {
+            "id": "context7_api_key",
+            "type": "promptString",
+            "description": "Context7 API Key (get from https://context7.com/account/api-keys)",
+            "password": true
+        },
+        {
+            "id": "exa_api_key",
+            "type": "promptString",
+            "description": "Exa API Key (get from https://exa.ai/account/api-keys)",
+            "password": true
+        },
+        {
+            "id": "firecrawl_api_key",
+            "type": "promptString",
+            "description": "Firecrawl API Key (get from https://www.firecrawl.dev/app/api-keys)",
+            "password": true
+        },
+        {
+            "id": "tavily_api_key",
+            "type": "promptString",
+            "description": "Tavily API Key (get from https://tavily.com/account/api-keys)",
+            "password": true
+        },
+        {
+            "id": "raindrop_access_token",
+            "type": "promptString",
+            "description": "Raindrop Access Token (get from https://api.raindrop.io/account/settings)",
+            "password": true
+        }
+    ]
+}

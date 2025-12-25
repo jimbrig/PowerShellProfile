@@ -1,0 +1,29 @@
+{
+    "recommendations": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-azuretools.vscode-containers",
+        "ms-vscode-remote.remote-containers",
+        "editorconfig.editorconfig",
+        "usernamehw.errorlens",
+        "hashhar.gitattributes",
+        "github.copilot",
+        "github.copilot-chat",
+        "github.vscode-pull-request-github",
+        "oderwat.indent-rainbow",
+        "yzhang.markdown-all-in-one",
+        "pspester.pester-test",
+        "esbenp.prettier-vscode",
+        "ms-vscode-remote.remote-wsl",
+        "redhat.vscode-xml",
+        "dotjoshjohnson.xml",
+        "redhat.vscode-yaml",
+        "tylerleonhardt.vscode-inline-values-powershell",
+        "hbenl.vscode-test-explorer",
+        "heaths.vscode-guid",
+        "ionutvmi.reg",
+        "github.vscode-github-actions",
+        "ms-toolsai.datawrangler",
+        "ms-vscode.powershell"
+    ]
+}
