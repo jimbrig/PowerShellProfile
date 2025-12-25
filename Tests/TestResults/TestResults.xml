@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="97" errors="0" failures="32" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2025-06-27" time="19:18:57">
+  <environment os-version="10.0.27881" user-domain="DESKTOP-MSI" nunit-version="2.5.8.0" clr-version="9.0.6" user="jimmy" platform="Microsoft Windows 11 Pro Insider Preview|C:\WINDOWS|\Device\Harddisk0\Partition3" cwd="C:\Users\jimmy\Documents\PowerShell" machine-name="DESKTOP-MSI" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Failure" success="False" time="3.6977" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\Defender.Tests.ps1" executed="True" result="Success" success="True" time="0.1894" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\Defender.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Windows Defender Checks" executed="True" result="Success" success="True" time="0.0392" asserts="0" description="Windows Defender Checks">
+            <results>
+              <test-case description="Checks Defender Exclusions Exist for Paths" name="Windows Defender Checks.Checks Defender Exclusions Exist for Paths" time="0.0216" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks Defender Exclusions Exist for Extensions" name="Windows Defender Checks.Checks Defender Exclusions Exist for Extensions" time="0.0053" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks Defender Exclusions Exist for Programs" name="Windows Defender Checks.Checks Defender Exclusions Exist for Programs" time="0.0039" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\Explorer.Tests.ps1" executed="True" result="Success" success="True" time="0.1128" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\Explorer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Windows File Explorer Configuration and Setup" executed="True" result="Success" success="True" time="0.038" asserts="0" description="Windows File Explorer Configuration and Setup">
+            <results>
+              <test-case description="Checks that File Explorer registry path exists" name="Windows File Explorer Configuration and Setup.Checks that File Explorer registry path exists" time="0.0099" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that File Explorer is set to open new &quot;Home&quot; by default" name="Windows File Explorer Configuration and Setup.Checks that File Explorer is set to open new &quot;Home&quot; by default" time="0.0057" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that hidden files are shown" name="Windows File Explorer Configuration and Setup.Checks that hidden files are shown" time="0.0128" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that file extensions are shown" name="Windows File Explorer Configuration and Setup.Checks that file extensions are shown" time="0.0046" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\Git.Tests.ps1" executed="True" result="Success" success="True" time="0.4524" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\Git.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Testing Git Configuration Values" executed="True" result="Success" success="True" time="0.386" asserts="0" description="Testing Git Configuration Values">
+            <results>
+              <test-case description="Checks a global git configuration file exists" name="Testing Git Configuration Values.Checks a global git configuration file exists" time="0.0139" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that user.email is set and valid" name="Testing Git Configuration Values.Checks that user.email is set and valid" time="0.0594" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that init.defaultBranch is set and is &quot;main&quot;" name="Testing Git Configuration Values.Checks that init.defaultBranch is set and is &quot;main&quot;" time="0.0561" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that gpg.program is set and is a valid executable" name="Testing Git Configuration Values.Checks that gpg.program is set and is a valid executable" time="0.0816" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that user.signingkey is set" name="Testing Git Configuration Values.Checks that user.signingkey is set" time="0.0538" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that commit.gpgSign is set" name="Testing Git Configuration Values.Checks that commit.gpgSign is set" time="0.0536" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that tag.forceSignAnnotated is set" name="Testing Git Configuration Values.Checks that tag.forceSignAnnotated is set" time="0.0617" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledApps.Tests.ps1" executed="True" result="Success" success="True" time="0.1727" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledApps.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Installed Applications" executed="True" result="Success" success="True" time="0.1106" asserts="0" description="Installed Applications">
+            <results>
+              <test-case description="Checks that Git is installed" name="Installed Applications.Checks that Git is installed" time="0.0232" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that Node.js is installed" name="Installed Applications.Checks that Node.js is installed" time="0.005" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that npm is installed" name="Installed Applications.Checks that npm is installed" time="0.0072" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that Python is installed" name="Installed Applications.Checks that Python is installed" time="0.0108" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that Docker is installed" name="Installed Applications.Checks that Docker is installed" time="0.0373" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that Visual Studio Code is installed" name="Installed Applications.Checks that Visual Studio Code is installed" time="0.0211" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1" executed="True" result="Failure" success="False" time="0.3502" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Installed PowerShell Modules" executed="True" result="Failure" success="False" time="0.295" asserts="0" description="Installed PowerShell Modules">
+            <results>
+              <test-suite type="ParameterizedTest" name="Installed PowerShell Modules.Checks that the &lt;ModuleName&gt; module is installed" executed="True" result="Failure" success="False" time="0.2879" asserts="0" description="Checks that the &lt;ModuleName&gt; module is installed">
+                <results>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0296" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.008" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0185" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0078" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0095" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.013" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0072" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.008" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0079" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.012" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0085" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.011" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0171" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0083" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0089" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0073" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0132" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0089" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0112" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0114" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0222" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0108" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0107" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Checks that the  module is installed" name="Installed PowerShell Modules.Checks that the  module is installed" time="0.0169" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected a value, but got $null or empty.</message>
+                      <stack-trace>at Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\InstalledModules.Tests.ps1:39</stack-trace>
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\Network.Tests.ps1" executed="True" result="Success" success="True" time="0.2562" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\Network.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="PowerShell Networking Tests" executed="True" result="Success" success="True" time="0.195" asserts="0" description="PowerShell Networking Tests">
+            <results>
+              <test-case description="Checks internet connection from a powershell shell" name="PowerShell Networking Tests.Checks internet connection from a powershell shell" time="0.026" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that TLS 1.2 is on system" name="PowerShell Networking Tests.Checks that TLS 1.2 is on system" time="0.0029" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that TLS 1.2 is available" name="PowerShell Networking Tests.Checks that TLS 1.2 is available" time="0.0025" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that TLS 1.3 is available" name="PowerShell Networking Tests.Checks that TLS 1.3 is available" time="0.0033" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that TLS 1.1 is not available" name="PowerShell Networking Tests.Checks that TLS 1.1 is not available" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that TLS 1.0 is not available" name="PowerShell Networking Tests.Checks that TLS 1.0 is not available" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that SSL 3.0 is not available" name="PowerShell Networking Tests.Checks that SSL 3.0 is not available" time="0.0027" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that TLS 1.2 is default" name="PowerShell Networking Tests.Checks that TLS 1.2 is default" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks EncryptionPolicy" name="PowerShell Networking Tests.Checks EncryptionPolicy" time="0.0035" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks DefaultConnectionLimit" name="PowerShell Networking Tests.Checks DefaultConnectionLimit" time="0.008" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks for Registry Keys for .NET Framework Version 4+ for Strong Cryptography (64bit)" name="PowerShell Networking Tests.Checks for Registry Keys for .NET Framework Version 4+ for Strong Cryptography (64bit)" time="0.0043" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks for Registry Keys for .NET Framework Version 4+ for Strong Cryptography (32bit)" name="PowerShell Networking Tests.Checks for Registry Keys for .NET Framework Version 4+ for Strong Cryptography (32bit)" time="0.0046" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks the Window AutoTuning Levels are set to Normal" name="PowerShell Networking Tests.Checks the Window AutoTuning Levels are set to Normal" time="0.0939" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that ScalingHeristics are Disabled" name="PowerShell Networking Tests.Checks that ScalingHeristics are Disabled" time="0.0144" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that ECN Capability is Disabled" name="PowerShell Networking Tests.Checks that ECN Capability is Disabled" time="0.0148" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\PowerShell.Tests.ps1" executed="True" result="Failure" success="False" time="0.0891" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\PowerShell.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="PowerShell Core Installation Checks" executed="True" result="Failure" success="False" time="0.0375" asserts="0" description="PowerShell Core Installation Checks">
+            <results>
+              <test-case description="Checks if PowerShell Core Stable Version is installed" name="PowerShell Core Installation Checks.Checks if PowerShell Core Stable Version is installed" time="0.0043" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks if Installed Stable PowerShell Core Version is 7+" name="PowerShell Core Installation Checks.Checks if Installed Stable PowerShell Core Version is 7+" time="0.0029" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks if PowerShell Core Preview Version is installed" name="PowerShell Core Installation Checks.Checks if PowerShell Core Preview Version is installed" time="0.0033" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks if Installed Preview PowerShell Core Version is correct" name="PowerShell Core Installation Checks.Checks if Installed Preview PowerShell Core Version is correct" time="0.0024" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that Stable PowerShell Installed Executable is on system PATH" name="PowerShell Core Installation Checks.Checks that Stable PowerShell Installed Executable is on system PATH" time="0.0107" asserts="0" success="False" result="Failure" executed="True">
+                <failure>
+                  <message>Expected $true, but got $false.</message>
+                  <stack-trace>at $EnvPaths.Contains($DefaultPathDir) | Should -Be $true, C:\Users\jimmy\Documents\PowerShell\Tests\System\PowerShell.Tests.ps1:44
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\PowerShell.Tests.ps1:44</stack-trace>
+                </failure>
+              </test-case>
+              <test-case description="Checks that Preview PowerShell Installed Executable is on system PATH" name="PowerShell Core Installation Checks.Checks that Preview PowerShell Installed Executable is on system PATH" time="0.0066" asserts="0" success="False" result="Failure" executed="True">
+                <failure>
+                  <message>Expected $true, but got $false.</message>
+                  <stack-trace>at $EnvPaths.Contains($PreviewPathDir) | Should -Be $true, C:\Users\jimmy\Documents\PowerShell\Tests\System\PowerShell.Tests.ps1:48
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\PowerShell.Tests.ps1:48</stack-trace>
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\Registry.Tests.ps1" executed="True" result="Success" success="True" time="0.0894" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\Registry.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Windows Registry Configuration" executed="True" result="Success" success="True" time="0.016" asserts="0" description="Windows Registry Configuration">
+            <results>
+              <test-case description="Checks that Windows Update registry path exists" name="Windows Registry Configuration.Checks that Windows Update registry path exists" time="0.0056" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that automatic updates are enabled" name="Windows Registry Configuration.Checks that automatic updates are enabled" time="0.006" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="Registry Tweaks" executed="True" result="Success" success="True" time="0.027" asserts="0" description="Registry Tweaks">
+            <results>
+              <test-case description="ShowsSecondsInTaskbar" name="Registry Tweaks.ShowsSecondsInTaskbar" time="0.0066" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\SSH.Tests.ps1" executed="True" result="Failure" success="False" time="0.6239" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\SSH.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Testing SSH Configuration and Keys" executed="True" result="Success" success="True" time="0.1737" asserts="0" description="Testing SSH Configuration and Keys">
+            <results>
+              <test-case description="Checks ssh command is available" name="Testing SSH Configuration and Keys.Checks ssh command is available" time="0.0178" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the SSH Agent is running" name="Testing SSH Configuration and Keys.Checks that the SSH Agent is running" time="0.004" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks ssh-agent service is set to Automatic" name="Testing SSH Configuration and Keys.Checks ssh-agent service is set to Automatic" time="0.0114" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the SSH directory exists" name="Testing SSH Configuration and Keys.Checks that the SSH directory exists" time="0.0033" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the SSH config file exists" name="Testing SSH Configuration and Keys.Checks that the SSH config file exists" time="0.0036" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the RSA keys exist" name="Testing SSH Configuration and Keys.Checks that the RSA keys exist" time="0.003" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the ECDSA keys exist" name="Testing SSH Configuration and Keys.Checks that the ECDSA keys exist" time="0.0025" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the RSA keys are not empty" name="Testing SSH Configuration and Keys.Checks that the RSA keys are not empty" time="0.0367" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the ECDSA keys are not empty" name="Testing SSH Configuration and Keys.Checks that the ECDSA keys are not empty" time="0.0771" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the SSH config file is not empty" name="Testing SSH Configuration and Keys.Checks that the SSH config file is not empty" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the SSH config file contains the correct permissions" name="Testing SSH Configuration and Keys.Checks that the SSH config file contains the correct permissions" time="0.0039" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="GitHub SSH Checks" executed="True" result="Failure" success="False" time="0.5639" asserts="0" description="GitHub SSH Checks">
+            <results>
+              <test-case description="Checks can connect to github via ssh" name="GitHub SSH Checks.Checks can connect to github via ssh" time="0.3855" asserts="0" success="False" result="Failure" executed="True">
+                <failure>
+                  <message>Expected 1, but got 255.</message>
+                  <stack-trace>at $LASTEXITCODE | Should -Be 1, C:\Users\jimmy\Documents\PowerShell\Tests\System\SSH.Tests.ps1:109
+at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\SSH.Tests.ps1:109</stack-trace>
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\VSCode.Tests.ps1" executed="True" result="Success" success="True" time="1.0007" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\VSCode.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Visual Studio Code Installation and Configuration" executed="True" result="Success" success="True" time="0.9461" asserts="0" description="Visual Studio Code Installation and Configuration">
+            <results>
+              <test-case description="Checks that Visual Studio Code is installed" name="Visual Studio Code Installation and Configuration.Checks that Visual Studio Code is installed" time="0.0053" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the settings.json file exists" name="Visual Studio Code Installation and Configuration.Checks that the settings.json file exists" time="0.0029" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the extensions directory exists" name="Visual Studio Code Installation and Configuration.Checks that the extensions directory exists" time="0.0037" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the PowerShell extension is installed" name="Visual Studio Code Installation and Configuration.Checks that the PowerShell extension is installed" time="0.9299" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1" executed="True" result="Failure" success="False" time="0.102" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Verify Windows Optional Features Status" executed="True" result="Failure" success="False" time="0.0441" asserts="0" description="Verify Windows Optional Features Status">
+            <results>
+              <test-suite type="ParameterizedTest" name="Verify Windows Optional Features Status.Verifies Windows Feature '&lt;FeatureName&gt;' Should be '&lt;Enabled&gt;'" executed="True" result="Failure" success="False" time="0.0375" asserts="0" description="Verifies Windows Feature '&lt;FeatureName&gt;' Should be '&lt;Enabled&gt;'">
+                <results>
+                  <test-case description="Verifies Windows Feature 'Microsoft-Hyper-V-All' Should be 'True'" name="Verify Windows Optional Features Status.Verifies Windows Feature 'Microsoft-Hyper-V-All' Should be 'True'" time="0.0114" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>RuntimeException: The requested operation requires elevation. Please run this script as an administrator.</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1:56</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Verifies Windows Feature 'Microsoft-Windows-Subsystem-Linux' Should be 'True'" name="Verify Windows Optional Features Status.Verifies Windows Feature 'Microsoft-Windows-Subsystem-Linux' Should be 'True'" time="0.0048" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>RuntimeException: The requested operation requires elevation. Please run this script as an administrator.</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1:56</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Verifies Windows Feature 'Microsoft-Windows-Subsystem-Linux-All' Should be 'True'" name="Verify Windows Optional Features Status.Verifies Windows Feature 'Microsoft-Windows-Subsystem-Linux-All' Should be 'True'" time="0.0045" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>RuntimeException: The requested operation requires elevation. Please run this script as an administrator.</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1:56</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Verifies Windows Feature 'Microsoft-Windows-Subsystem-Linux-WslOptionalFeature' Should be 'True'" name="Verify Windows Optional Features Status.Verifies Windows Feature 'Microsoft-Windows-Subsystem-Linux-WslOptionalFeature' Should be 'True'" time="0.0065" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>RuntimeException: The requested operation requires elevation. Please run this script as an administrator.</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1:56</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Verifies Windows Feature 'SearchEngine-Client-Package' Should be 'True'" name="Verify Windows Optional Features Status.Verifies Windows Feature 'SearchEngine-Client-Package' Should be 'True'" time="0.0052" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>RuntimeException: The requested operation requires elevation. Please run this script as an administrator.</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1:56</stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case description="Verifies Windows Feature 'HypervisorPlatform' Should be 'True'" name="Verify Windows Optional Features Status.Verifies Windows Feature 'HypervisorPlatform' Should be 'True'" time="0.0051" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>RuntimeException: The requested operation requires elevation. Please run this script as an administrator.</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\Users\jimmy\Documents\PowerShell\Tests\System\Windows.OptionalFeatures.Tests.ps1:56</stack-trace>
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\WindowsTerminal.Tests.ps1" executed="True" result="Success" success="True" time="0.0871" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\WindowsTerminal.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Windows Terminal Installation and Configuration" executed="True" result="Success" success="True" time="0.0324" asserts="0" description="Windows Terminal Installation and Configuration">
+            <results>
+              <test-case description="Checks that Windows Terminal is installed" name="Windows Terminal Installation and Configuration.Checks that Windows Terminal is installed" time="0.0051" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the settings.json file exists" name="Windows Terminal Installation and Configuration.Checks that the settings.json file exists" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the settings.json file is not empty" name="Windows Terminal Installation and Configuration.Checks that the settings.json file is not empty" time="0.0131" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that the default profile is set to PowerShell" name="Windows Terminal Installation and Configuration.Checks that the default profile is set to PowerShell" time="0.0053" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\jimmy\Documents\PowerShell\Tests\System\WSL.Tests.ps1" executed="True" result="Success" success="True" time="0.1691" asserts="0" description="C:\Users\jimmy\Documents\PowerShell\Tests\System\WSL.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="WSL Installation and Configuration" executed="True" result="Success" success="True" time="0.1156" asserts="0" description="WSL Installation and Configuration">
+            <results>
+              <test-case description="Checks that WSL is installed" name="WSL Installation and Configuration.Checks that WSL is installed" time="0.0041" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that WSL version 2 is installed" name="WSL Installation and Configuration.Checks that WSL version 2 is installed" time="0.0524" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Checks that at least one Linux distribution is installed" name="WSL Installation and Configuration.Checks that at least one Linux distribution is installed" time="0.0485" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
