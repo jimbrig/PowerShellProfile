@@ -1,0 +1,52 @@
+# .gitattributes
+# =================================
+
+# Default Behavior
+# =================================
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# PowerShell: Source files
+# =================================
+*.{ps1,ps1x,psm1,psd1,ps1xml,pssc,psrc,cdxml} text eol=crlf
+
+# Images
+# =================================
+*.{jpg,jpeg,png,gif} binary
+
+# Documentation
+# =================================
+
+# Changelog
+CHANGELOG.md merge=union eol=lf
+
+# rich text format files
+*.rtf binary
+
+# Linguist
+# =================================
+
+# Ignore web related files
+*.{html,css,scss,sass,less,js,ts} linguist-vendored=true
+
+# Ignore web generated files
+*.{min.css,min.js} linguist-generated=true
+
+# Ignore "roff" files
+*.man linguist-vendored=true
+
+# Ignore rich text format files
+*.rtf linguist-vendored=true
+
+# Basic .gitattributes for a PowerShell repo.
+
+# Source files
+# ============
+*.ps1      text eol=crlf
+*.ps1x     text eol=crlf
+*.psm1     text eol=crlf
+*.psd1     text eol=crlf
+*.ps1xml   text eol=crlf
+*.pssc     text eol=crlf
+*.psrc     text eol=crlf
+*.cdxml    text eol=crlf
