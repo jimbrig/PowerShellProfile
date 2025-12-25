@@ -1,0 +1,166 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">FidoScript</S>
+      <S N="Version">1.0.0</S>
+      <Obj N="Type" RefId="1">
+        <TN RefId="1">
+          <T>Microsoft.PowerShell.PSResourceGet.UtilClasses.ResourceType</T>
+          <T>System.Enum</T>
+          <T>System.ValueType</T>
+          <T>System.Object</T>
+        </TN>
+        <ToString>Script</ToString>
+        <I32>2</I32>
+      </Obj>
+      <S N="Description">A PowerShell download script for Microsoft Windows and UEFI Shell ISOs._x000A__x000A__x000A_</S>
+      <S N="Author">Jimmy Briggs &lt;jimmy.briggs@jimbrig.com&gt;</S>
+      <S N="CompanyName">Jimmy Briggs</S>
+      <S N="Copyright">Jimmy Briggs | 2024</S>
+      <DT N="PublishedDate">2024-02-19T21:23:33.57</DT>
+      <DT N="InstalledDate">2025-07-18T21:19:18.4695758-04:00</DT>
+      <B N="IsPrerelease">false</B>
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://github.com/pbatard/Fido/blob/master/LICENSE.txt</URI>
+      <URI N="ProjectUri">https://github.com/pbatard/Fido/</URI>
+      <Nil N="IconUri" />
+      <Obj N="Tags" RefId="2">
+        <TN RefId="2">
+          <T>System.String[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>Windows</S>
+          <S>UEFI</S>
+          <S>ISO</S>
+          <S>PowerShell</S>
+          <S>Script</S>
+          <S>Download</S>
+          <S>PSScript</S>
+          <S>PSFunction_Get-Platform-Version</S>
+          <S>PSCommand_Get-Platform-Version</S>
+          <S>PSFunction_Select-Language</S>
+          <S>PSCommand_Select-Language</S>
+          <S>PSFunction_Add-Entry</S>
+          <S>PSCommand_Add-Entry</S>
+          <S>PSFunction_Refresh-Control</S>
+          <S>PSCommand_Refresh-Control</S>
+          <S>PSFunction_Send-Message</S>
+          <S>PSCommand_Send-Message</S>
+          <S>PSFunction_ConvertTo-ImageSource</S>
+          <S>PSCommand_ConvertTo-ImageSource</S>
+          <S>PSFunction_Throw-Error</S>
+          <S>PSCommand_Throw-Error</S>
+          <S>PSFunction_Get-Translation</S>
+          <S>PSCommand_Get-Translation</S>
+          <S>PSFunction_GetElementById</S>
+          <S>PSCommand_GetElementById</S>
+          <S>PSFunction_Error</S>
+          <S>PSCommand_Error</S>
+          <S>PSFunction_Get-RandomDate</S>
+          <S>PSCommand_Get-RandomDate</S>
+          <S>PSFunction_Size-To-Human-Readable</S>
+          <S>PSCommand_Size-To-Human-Readable</S>
+          <S>PSFunction_Check-Locale</S>
+          <S>PSCommand_Check-Locale</S>
+          <S>PSFunction_Get-Windows-Releases</S>
+          <S>PSCommand_Get-Windows-Releases</S>
+          <S>PSFunction_Get-Windows-Editions</S>
+          <S>PSCommand_Get-Windows-Editions</S>
+          <S>PSFunction_Get-Windows-Languages</S>
+          <S>PSCommand_Get-Windows-Languages</S>
+          <S>PSFunction_Get-Windows-Download-Links</S>
+          <S>PSCommand_Get-Windows-Download-Links</S>
+          <S>PSFunction_Process-Download-Link</S>
+          <S>PSCommand_Process-Download-Link</S>
+          <S>PSIncludes_Function</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="3">
+        <TN RefId="3">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Nil N="Value" />
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Obj N="Value" RefId="4">
+              <TNRef RefId="2" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="2" />
+              <LST>
+                <S>Get-Platform-Version</S>
+                <S>Select-Language</S>
+                <S>Add-Entry</S>
+                <S>Refresh-Control</S>
+                <S>Send-Message</S>
+                <S>ConvertTo-ImageSource</S>
+                <S>Throw-Error</S>
+                <S>Get-Translation</S>
+                <S>GetElementById</S>
+                <S>Error</S>
+                <S>Get-RandomDate</S>
+                <S>Size-To-Human-Readable</S>
+                <S>Check-Locale</S>
+                <S>Get-Windows-Releases</S>
+                <S>Get-Windows-Editions</S>
+                <S>Get-Windows-Languages</S>
+                <S>Get-Windows-Download-Links</S>
+                <S>Process-Download-Link</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Function</S>
+            <Nil N="Value" />
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Nil N="Value" />
+          </En>
+          <En>
+            <S N="Key">DscResource</S>
+            <Obj N="Value" RefId="6">
+              <TNRef RefId="2" />
+              <LST />
+            </Obj>
+          </En>
+        </DCT>
+      </Obj>
+      <S N="PowerShellGetFormatVersion"></S>
+      <S N="ReleaseNotes">- Version 1.0.0_x000A_- Initial release of FidoScript.ps1</S>
+      <Obj N="Dependencies" RefId="7">
+        <TN RefId="4">
+          <T>Microsoft.PowerShell.PSResourceGet.UtilClasses.Dependency[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST />
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <Obj N="AdditionalMetadata" RefId="8">
+        <TNRef RefId="0" />
+        <MS>
+          <S N="NormalizedVersion">1.0.0</S>
+          <S N="IsPrerelease">False</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">C:\Users\jimmy\Documents\PowerShell\Scripts</S>
+    </MS>
+  </Obj>
+</Objs>
