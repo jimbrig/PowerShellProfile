@@ -91,7 +91,7 @@ if (Get-Command obsidian-cli -ErrorAction SilentlyContinue) {
     #     local result=$(obsidian-cli print-default --path-only)
     #     [ -n "$result" ] && cd -- "$result"
     # }
-    Function obscd {
+    Function cdvault {
         $result = (obsidian-cli print-default --path-only)
         if ($result) {
             Set-Location $result
@@ -186,3 +186,58 @@ Function Clear-HostRaindropAliasFunction {
 }
 
 Set-Alias -Name cls -Value Clear-HostRaindropAliasFunction -Option AllScope -Force
+
+Function Invoke-RStudioProject {
+    <#
+    .SYNOPSIS
+        Opens the current directory in RStudio.
+    .DESCRIPTION
+        This function opens the current directory in RStudio.
+    .PARAMETER Path
+        The path to the directory to open in RStudio.
+    .EXAMPLE
+        Invoke-RStudioProject
+    #>
+    param(
+        [string]$Path = '.'
+    )
+
+    Push-Location $Path
+
+    $proj = Get-ChildItem *.Rproj -ErrorAction SilentlyContinue |
+    Select-Object -First 1
+
+    if (-not $proj) {
+        Write-Error "No .Rproj file found in $Path"
+        Pop-Location
+        return
+    }
+
+    # Try to resolve rstudio.exe from PATH first
+    $rstudioFromPath = (& where.exe rstudio.exe 2>$null | Select-Object -First 1)
+
+    if ($rstudioFromPath) {
+        $rstudio = $rstudioFromPath
+    } else {
+        # Fallback to common default install path; adjust if yours is custom
+        $rstudio = 'C:\Program Files\RStudio\rstudio.exe'
+    }
+
+    if (-not (Test-Path $rstudio)) {
+        Write-Error "rstudio.exe not found. Checked PATH and '$rstudio'."
+        Pop-Location
+        return
+    }
+
+    $stdoutLog = Join-Path $env:TEMP 'rstudio-stdout.log'
+    $stderrLog = Join-Path $env:TEMP 'rstudio-stderr.log'
+
+    Start-Process $rstudio `
+        -ArgumentList "`"$($proj.FullName)`"" `
+        -RedirectStandardOutput $stdoutLog `
+        -RedirectStandardError  $stderrLog
+
+    Pop-Location
+}
+
+Set-Alias -Name rsproj -Value Invoke-RStudioProject -Option AllScope -Force
