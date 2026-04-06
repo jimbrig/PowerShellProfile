@@ -1,0 +1,28 @@
+name: PSRStudioTools CI
+
+on:
+  push:
+    paths:
+      - 'Source/Modules/PSRStudioTools/**'
+      - '.github/workflows/psrstudiotools-ci.yml'
+  pull_request:
+    paths:
+      - 'Source/Modules/PSRStudioTools/**'
+      - '.github/workflows/psrstudiotools-ci.yml'
+
+jobs:
+  test:
+    name: Build and test module
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: ./Source/Modules/PSRStudioTools
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run build and tests
+        run: ./build.ps1 -Task Test -Bootstrap
