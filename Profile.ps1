@@ -11,6 +11,15 @@ $Global:ProfileConfigPath = Join-Path -Path $ProfileSourcePath -ChildPath 'Profi
 # remove "R" alias which by default is set to Invoke-History (for R.exe to work)
 Remove-Alias -Name R -ErrorAction SilentlyContinue
 
+# "rig" CLI tool completion
+if (Get-Command rig -ErrorAction SilentlyContinue) {
+    try {
+        . 'C:\Program Files\rig\_rig.ps1'
+    } catch {
+        Write-Warning "Failed to register rig CLI shell completion: $_"
+    }
+}
+
 # set ai alias
 Set-Alias -Name ai -Value aichat.exe -ErrorAction SilentlyContinue
 
@@ -241,3 +250,6 @@ Function Invoke-RStudioProject {
 }
 
 Set-Alias -Name rsproj -Value Invoke-RStudioProject -Option AllScope -Force
+
+# Set TLS 1.2 and 1.3
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12 -bor [System.Net.SecurityProtocolType]::Tls13
