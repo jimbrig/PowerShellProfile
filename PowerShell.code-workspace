@@ -1,0 +1,52 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.profiles.windows": {
+			"PowerShell (NoProfile)": {
+				"source": "PowerShell",
+				"args": [
+					"-NoProfile"
+				]
+			}
+		},
+		"terminal.integrated.defaultProfile.windows": "PowerShell (NoProfile)",
+		"files.defaultLanguage": "powershell",
+		"files.associations": {
+			"*.ps1": "powershell",
+			"*.psm1": "powershell",
+			"*.psd1": "powershell",
+			"*.ps1xml": "xml",
+			"*.pssc": "powershell",
+			"*.chatmode.md": "markdown",
+			"*.instructions.md": "markdown",
+			"*.prompt.md": "markdown"
+		},
+		"powershell.enableProfileLoading": true,
+		"powershell.scriptAnalysis.enable": true,
+		"powershell.buttons.showPanelMovementButtons": true,
+		"powershell.debugging.createTemporaryIntegratedConsole": true,
+		"powershell.codeFormatting.preset": "OTBS",
+		"powershell.codeFormatting.openBraceOnSameLine": true,
+		"powershell.codeFormatting.newLineAfterCloseBrace": true,
+		"powershell.codeFormatting.useConstantStrings": true,
+		"powershell.codeFormatting.autoCorrectAliases": true,
+		"powershell.pester.codeLens": false,
+		"powershell.pester.useLegacyCodeLens": false,
+		"powershell.pester.outputVerbosity": "Detailed",
+		"powershell.pester.debugOutputVerbosity": "Detailed",
+		"xml.fileAssociations": [
+			{
+				"systemId": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd",
+				"pattern": "**/*.Format.ps1xml"
+			},
+			{
+				"systemId": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Types.xsd",
+				"pattern": "**/*.Types.ps1xml"
+			}
+		]
+	}
+}

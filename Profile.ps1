@@ -11,6 +11,15 @@ $Global:ProfileConfigPath = Join-Path -Path $ProfileSourcePath -ChildPath 'Profi
 # remove "R" alias which by default is set to Invoke-History (for R.exe to work)
 Remove-Alias -Name R -ErrorAction SilentlyContinue
 
+# "rig" CLI tool completion
+if (Get-Command rig -ErrorAction SilentlyContinue) {
+    try {
+        . 'C:\Program Files\rig\_rig.ps1'
+    } catch {
+        Write-Warning "Failed to register rig CLI shell completion: $_"
+    }
+}
+
 # set ai alias
 Set-Alias -Name ai -Value aichat.exe -ErrorAction SilentlyContinue
 
@@ -91,7 +100,7 @@ if (Get-Command obsidian-cli -ErrorAction SilentlyContinue) {
     #     local result=$(obsidian-cli print-default --path-only)
     #     [ -n "$result" ] && cd -- "$result"
     # }
-    Function obscd {
+    Function cdvault {
         $result = (obsidian-cli print-default --path-only)
         if ($result) {
             Set-Location $result
@@ -108,6 +117,16 @@ try {
     }
 } catch {
     Write-Warning "Zoxide not initialzied: $_"
+}
+
+# gdal completion
+if (Get-Command gdal -ErrorAction SilentlyContinue) {
+    try {
+        . (Join-Path $ProfileSourcePath 'Completions\gdal.completion.ps1')
+        Write-Verbose 'GDAL shell completion registered successfully.'
+    } catch {
+        Write-Warning "Failed to register GDAL shell completion: $_"
+    }
 }
 
 # oh-my-posh initialization
@@ -186,3 +205,61 @@ Function Clear-HostRaindropAliasFunction {
 }
 
 Set-Alias -Name cls -Value Clear-HostRaindropAliasFunction -Option AllScope -Force
+
+Function Invoke-RStudioProject {
+    <#
+    .SYNOPSIS
+        Opens the current directory in RStudio.
+    .DESCRIPTION
+        This function opens the current directory in RStudio.
+    .PARAMETER Path
+        The path to the directory to open in RStudio.
+    .EXAMPLE
+        Invoke-RStudioProject
+    #>
+    param(
+        [string]$Path = '.'
+    )
+
+    Push-Location $Path
+
+    $proj = Get-ChildItem *.Rproj -ErrorAction SilentlyContinue |
+    Select-Object -First 1
+
+    if (-not $proj) {
+        Write-Error "No .Rproj file found in $Path"
+        Pop-Location
+        return
+    }
+
+    # Try to resolve rstudio.exe from PATH first
+    $rstudioFromPath = (& where.exe rstudio.exe 2>$null | Select-Object -First 1)
+
+    if ($rstudioFromPath) {
+        $rstudio = $rstudioFromPath
+    } else {
+        # Fallback to common default install path; adjust if yours is custom
+        $rstudio = 'C:\Program Files\RStudio\rstudio.exe'
+    }
+
+    if (-not (Test-Path $rstudio)) {
+        Write-Error "rstudio.exe not found. Checked PATH and '$rstudio'."
+        Pop-Location
+        return
+    }
+
+    $stdoutLog = Join-Path $env:TEMP 'rstudio-stdout.log'
+    $stderrLog = Join-Path $env:TEMP 'rstudio-stderr.log'
+
+    Start-Process $rstudio `
+        -ArgumentList "`"$($proj.FullName)`"" `
+        -RedirectStandardOutput $stdoutLog `
+        -RedirectStandardError  $stderrLog
+
+    Pop-Location
+}
+
+Set-Alias -Name rsproj -Value Invoke-RStudioProject -Option AllScope -Force
+
+# Set TLS 1.2 and 1.3
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12 -bor [System.Net.SecurityProtocolType]::Tls13
