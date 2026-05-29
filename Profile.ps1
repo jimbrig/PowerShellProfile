@@ -119,6 +119,16 @@ try {
     Write-Warning "Zoxide not initialzied: $_"
 }
 
+# gdal completion
+if (Get-Command gdal -ErrorAction SilentlyContinue) {
+    try {
+        . (Join-Path $ProfileSourcePath 'Completions\gdal.completion.ps1')
+        Write-Verbose 'GDAL shell completion registered successfully.'
+    } catch {
+        Write-Warning "Failed to register GDAL shell completion: $_"
+    }
+}
+
 # oh-my-posh initialization
 try {
     if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
