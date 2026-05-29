@@ -8,7 +8,7 @@
     This script contains tests to verify the installation and configuration of various commonly used applications on the system.
 #>
 
-Describe 'Installed Applications' {
+Describe 'Installed Applications' -Tag 'System', 'Applications' {
 
     BeforeAll {
         # Ensure User Environment PATH Variables are loaded
@@ -39,5 +39,13 @@ Describe 'Installed Applications' {
 
     It 'Checks that Visual Studio Code is installed' {
         Get-Command code -ErrorAction SilentlyContinue | Should -Not -BeNullOrEmpty
+    }
+
+    Context 'Command Resolution' {
+        It 'Resolves git to the Git for Windows installation' {
+            $Git = Get-Command git -ErrorAction SilentlyContinue
+            $Git | Should -Not -BeNullOrEmpty -Because 'git should be installed and on PATH'
+            $Git.Source | Should -BeLike "$env:ProgramFiles\Git\*" -Because 'git should resolve to the Git for Windows install'
+        }
     }
 }

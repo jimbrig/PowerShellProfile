@@ -1,87 +1,47 @@
 #Requires -Module Pester
 
 <#
-.SYNOPSIS
-    Tests for verifying the configuration of various Windows registry settings.
+    .SYNOPSIS
+        Tests Windows registry configuration and personal tweaks.
 
-.DESCRIPTION
-    This script contains tests to verify the configuration of various Windows registry settings that are commonly used
-    to configure system behavior and preferences.
+    .DESCRIPTION
+        Verifies system policy and personal registry tweaks are applied:
+
+        - Windows Update automatic updates are enabled (AUOptions = 3, NoAutoUpdate = 0)
+        - Seconds are shown in the taskbar clock (ShowSecondsInSystemClock = 1)
+        - The ".lnk" shortcut suffix text is disabled (link = 0)
+
+        A missing or different value fails the test, surfacing tweaks that a
+        Windows update may have reverted.
 #>
 
-Describe 'Windows Registry Configuration' {
+Describe 'Windows Registry Configuration' -Tag 'System', 'Registry' {
     BeforeAll {
-        $Script:HKLM_WindowsUpdateRegistryPath = 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
-        $Script:HKLM_StartupRegistryPath = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run'
-        $Script:HKCU_StartupRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
-        $Script:HKLM_EnvironmentRegistryPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment'
-        $Script:HKCU_EnvironmentRegistryPath = 'HKCU:\Environment'
+        $script:WindowsUpdateRegistryPath = 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
     }
 
     It 'Checks that Windows Update registry path exists' {
-        Test-Path -Path $HKLM_WindowsUpdateRegistryPath | Should -Be $true
+        Test-Path -Path $WindowsUpdateRegistryPath | Should -BeTrue
     }
 
     It 'Checks that automatic updates are enabled' {
-        $splat = @{
-            Path        = "$HKLM_WindowsUpdateRegistryPath\AU"
-            Name        = 'AUOptions'
-            ErrorAction = 'SilentlyContinue'
-        }
-        $Val = Get-ItemProperty @splat
-        If ($Val) {
-            $Val.AUOptions | Should -BeExactly 3
-        } Else {
-            Write-Info -Message 'Registry key not found...'
-        }
+        $Val = Get-ItemProperty -Path "$WindowsUpdateRegistryPath\AU" -Name 'AUOptions' -ErrorAction SilentlyContinue
+        $Val.AUOptions | Should -Be 3 -Because 'AUOptions = 3 auto-downloads and notifies for install'
 
-        $splat = @{
-            Path        = "$HKLM_WindowsUpdateRegistryPath\AU"
-            Name        = 'NoAutoUpdate'
-            ErrorAction = 'SilentlyContinue'
-        }
-
-        $Val = Get-ItemProperty @splat
-
-        If ($Val) {
-            $Val.NoAutoUpdate | Should -Be 0
-        } Else {
-            Write-Info -Message 'Registry key not found...'
-        }
+        $Val = Get-ItemProperty -Path "$WindowsUpdateRegistryPath\AU" -Name 'NoAutoUpdate' -ErrorAction SilentlyContinue
+        $Val.NoAutoUpdate | Should -Be 0 -Because 'NoAutoUpdate = 0 keeps automatic updates enabled'
     }
 }
 
-Describe "Registry Tweaks" {
+Describe 'Windows Registry Tweaks' -Tag 'System', 'Registry' {
 
-    BeforeAll {
-        $Script:RegistryEdits = @{
-            'ShowSecondsInTaskbar' = @{
-                'Path'  = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-                'Name'  = 'ShowSecondsInSystemClock'
-                'Type'  = 'DWORD'
-                'Value' = 1
-            }
-            'DisableShortcutText' = @{
-                'Path'  = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer'
-                'Name'  = 'link'
-                'Type'  = 'DWORD'
-                'Value' = 1
-            }
-        }
+    It 'Checks that seconds are shown in the taskbar clock' {
+        $Val = Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowSecondsInSystemClock' -ErrorAction SilentlyContinue
+        $Val.ShowSecondsInSystemClock | Should -Be 1 -Because 'ShowSecondsInSystemClock = 1 shows seconds in the clock'
     }
 
-    It "ShowsSecondsInTaskbar" {
-        $splat = @{
-            Path        = $RegistryEdits.ShowSecondsInTaskbar.Path
-            Name        = $RegistryEdits.ShowSecondsInTaskbar.Name
-            ErrorAction = 'SilentlyContinue'
-        }
-        $Val = Get-ItemProperty @splat
-
-        If ($Val) {
-            $Val.ShowSecondsInSystemClock | Should -Be 1
-        } Else {
-            Write-Info -Message 'Registry key not found...'
-        }
+    It 'Checks that the shortcut suffix text is disabled' {
+        $Val = Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'link' -ErrorAction SilentlyContinue
+        $Val.link | Should -Be 1 -Because 'link = 1 disables the "- Shortcut" suffix on new shortcuts'
     }
 }

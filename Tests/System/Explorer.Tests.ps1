@@ -1,62 +1,42 @@
 #Requires -Module Pester
 
 <#
-.SYNOPSIS
-    Tests for Windows File Explorer configuration and setup.
+    .SYNOPSIS
+        Tests Windows File Explorer configuration.
 
-.DESCRIPTION
-    This script contains tests to verify the configuration and setup of Windows File Explorer on the system.
+    .DESCRIPTION
+        Verifies the user's preferred File Explorer settings are applied:
+
+        - Explorer opens to "Home" by default (LaunchTo = 2)
+        - Hidden files are shown (Hidden = 1)
+        - Known file extensions are shown (HideFileExt = 0)
+
+        A missing or different value fails the test, which surfaces settings that a
+        Windows update or profile reset may have reverted.
 #>
 
-Describe 'Windows File Explorer Configuration and Setup' {
+Describe 'Windows File Explorer Configuration and Setup' -Tag 'System', 'Explorer' {
     BeforeAll {
-        $Script:ExplorerRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
-        $Script:AdvancedRegistryPath = "$ExplorerRegistryPath\Advanced"
+        $script:ExplorerRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
+        $script:AdvancedRegistryPath = "$ExplorerRegistryPath\Advanced"
     }
 
     It 'Checks that File Explorer registry path exists' {
-        Test-Path -Path $ExplorerRegistryPath | Should -Be $true
+        Test-Path -Path $ExplorerRegistryPath | Should -BeTrue
     }
 
-    It 'Checks that File Explorer is set to open new "Home" by default' {
-        $splat = @{
-            Path        = $AdvancedRegistryPath
-            Name        = 'LaunchTo'
-            ErrorAction = 'SilentlyContinue'
-        }
-        $Val = Get-ItemProperty @splat
-        If ($Val) {
-            $Val.LaunchTo | Should -BeExactly 2
-        } Else {
-            Write-Info -Message 'Registry key not found...'
-        }
+    It 'Checks that File Explorer is set to open to "Home" by default' {
+        $Val = Get-ItemProperty -Path $AdvancedRegistryPath -Name 'LaunchTo' -ErrorAction SilentlyContinue
+        $Val.LaunchTo | Should -Be 2 -Because 'LaunchTo = 2 opens Explorer to Home'
     }
 
     It 'Checks that hidden files are shown' {
-        $splat = @{
-            Path        = "$ExplorerRegistryPath\Advanced"
-            Name        = 'Hidden'
-            ErrorAction = 'SilentlyContinue'
-        }
-        $Val = Get-ItemProperty @splat
-        If ($Val) {
-            $Val.Hidden | Should -BeExactly 1
-        } Else {
-            Write-Info -Message 'Registry key not found...'
-        }
+        $Val = Get-ItemProperty -Path $AdvancedRegistryPath -Name 'Hidden' -ErrorAction SilentlyContinue
+        $Val.Hidden | Should -Be 1 -Because 'Hidden = 1 shows hidden files'
     }
 
     It 'Checks that file extensions are shown' {
-        $splat = @{
-            Path        = "$ExplorerRegistryPath\Advanced"
-            Name        = 'HideFileExt'
-            ErrorAction = 'SilentlyContinue'
-        }
-        $Val = Get-ItemProperty @splat
-        If ($Val) {
-            $Val.HideFileExt | Should -BeExactly 0
-        } Else {
-            Write-Info -Message 'Registry key not found...'
-        }
+        $Val = Get-ItemProperty -Path $AdvancedRegistryPath -Name 'HideFileExt' -ErrorAction SilentlyContinue
+        $Val.HideFileExt | Should -Be 0 -Because 'HideFileExt = 0 shows known file extensions'
     }
 }

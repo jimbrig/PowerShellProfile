@@ -1,63 +1,45 @@
+#Requires -Module Pester
+
+<#
+    .SYNOPSIS
+        Tests the state of Windows optional features.
+
+    .DESCRIPTION
+        Verifies that the Windows optional features required for the development
+        environment (Hyper-V, WSL, the hypervisor platform, and search indexing)
+        are in their expected enabled/disabled state.
+
+        Reading optional feature state requires elevation, so these tests are
+        skipped when the session is not running as administrator.
+#>
+
 BeforeDiscovery {
     $script:OptionalFeaturesStatus = @(
-        @{FeatureName = 'Microsoft-Hyper-V-All'; Enabled = $true; MissingOK = $false },
-        @{FeatureName = 'Microsoft-Windows-Subsystem-Linux'; Enabled = $true; MissingOK = $false },
-        @{FeatureName = 'Microsoft-Windows-Subsystem-Linux-All'; Enabled = $true; MissingOK = $false },
-        @{FeatureName = 'Microsoft-Windows-Subsystem-Linux-WslOptionalFeature'; Enabled = $true; MissingOK = $false },
-        @{FeatureName = 'SearchEngine-Client-Package'; Enabled = $true; MissingOK = $false },
-        @{FeatureName = 'HypervisorPlatform'; Enabled = $true; MissingOK = $false }
+        @{ FeatureName = 'Microsoft-Hyper-V-All'; Enabled = $true; MissingOK = $false }
+        @{ FeatureName = 'Microsoft-Windows-Subsystem-Linux'; Enabled = $true; MissingOK = $false }
+        @{ FeatureName = 'Microsoft-Windows-Subsystem-Linux-All'; Enabled = $true; MissingOK = $false }
+        @{ FeatureName = 'Microsoft-Windows-Subsystem-Linux-WslOptionalFeature'; Enabled = $true; MissingOK = $false }
+        @{ FeatureName = 'SearchEngine-Client-Package'; Enabled = $true; MissingOK = $false }
+        @{ FeatureName = 'HypervisorPlatform'; Enabled = $true; MissingOK = $false }
     )
+
+    $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
+    $script:SkipFeatureChecks = -not ($IsWindows -and $IsAdmin)
 }
 
-BeforeAll {
-    if (-not $IsWindows) {
-        Write-Warning "These tests are only applicable to Windows systems."
-        return
-    }
-
-    function Start-ElevatedSession {
-        if ($IsWindows) {
-            Start-Process powershell -Verb RunAs -ArgumentList "-Command $PSCommandPath" -Wait
-        } elseif ($IsLinux -or $IsMacOS) {
-            sudo pwsh -Command $PSCommandPath
-        }
-    }
-
-    $script:IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
-    $script:SkipTests = -not $IsAdmin
-
-    if (-not $IsAdmin) {
-        Write-Warning "Tests require elevation. Run as administrator to execute tests."
-    } else {
+Describe 'Verify Windows Optional Features Status' -Tag 'System', 'OptionalFeatures', 'RequiresAdmin' {
+    BeforeAll {
         $script:OptionalFeatures = Get-WindowsOptionalFeature -Online
     }
 
-    $script:OptionalFeaturesToEnable = @(
-        'HypervisorPlatform',
-        'VirtualMachinePlatform',
-        'Microsoft-Hyper-V-All',
-        'Microsoft-Windows-Subsystem-Linux',
-        'Containers',
-        'SmbDirect'
-        # Add other features as needed
-    )
-}
-
-Describe "Verify Windows Optional Features Status" -Skip:(-not $IsWindows) {
-    It "Verifies Windows Feature '<FeatureName>' Should be '<Enabled>'" -TestCases $OptionalFeaturesStatus -Skip:$SkipTests {
+    It "Verifies Windows Feature '<FeatureName>' is '<Enabled>'" -TestCases $OptionalFeaturesStatus -Skip:$SkipFeatureChecks {
         Param(
             [string]$FeatureName,
             [bool]$MissingOK,
             [bool]$Enabled
         )
 
-        # Check for administrative privileges
-        if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-            throw "The requested operation requires elevation. Please run this script as an administrator."
-        }
-
-        $OptionalFeatures = Get-WindowsOptionalFeature -Online
-        $Feature = $OptionalFeatures | Where-Object { $_.FeatureName -eq $FeatureName }
+        $Feature = $script:OptionalFeatures | Where-Object { $_.FeatureName -eq $FeatureName }
 
         if ($null -eq $Feature) {
             if (-not $MissingOK) {
@@ -67,7 +49,6 @@ Describe "Verify Windows Optional Features Status" -Skip:(-not $IsWindows) {
             return
         }
 
-        $isEnabled = $Feature.State -eq 'Enabled'
-        $isEnabled | Should -Be $Enabled -Because "Feature '$FeatureName' state should match expected state"
+        ($Feature.State -eq 'Enabled') | Should -Be $Enabled -Because "Feature '$FeatureName' state should match expected state"
     }
 }

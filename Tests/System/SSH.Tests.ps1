@@ -1,63 +1,42 @@
-#Requires -Modules Pester
+#Requires -Module Pester
 
 <#
-.SYNOPSIS
+    .SYNOPSIS
+        Tests the SSH client configuration and keys.
+
+    .DESCRIPTION
+        Verifies the SSH client is available, the ~/.ssh directory and config file
+        exist and are populated, RSA and ed25519 keys are present and non-empty,
+        and that GitHub is reachable over SSH.
+
+        Note: the Windows ssh-agent service is intentionally not asserted - commit
+        signing uses ssh-keygen against the key file directly and git auth is over
+        HTTPS, so the agent is not part of this workflow.
 #>
 
-Describe 'Testing SSH Configuration and Keys' {
+Describe 'Testing SSH Configuration and Keys' -Tag 'System', 'SSH' {
     BeforeAll {
-        Function Test-SSHKey {
+        Function Test-SSHKeyNotEmpty {
             Param(
                 [Parameter(Mandatory)]
-                [String]$Key
+                [System.IO.FileInfo]$Key
             )
 
-            Begin {
-                if ((Get-Service -Name ssh-agent).Status -ne 'Running') {
-                    Write-Warning "SSH Agent is not running. Please start the SSH Agent and try again."
-                    return
-                }
-                if (-not (Get-Command -Name 'ssh' -ErrorAction SilentlyContinue)) {
-                    Write-Error "SSH is not installed. Please install SSH and try again."
-                    return
-                }
-                if (-not (Test-Path -Path "$HOME\.ssh")) {
-                    Write-Error "SSH directory not found at $HOME\.ssh"
-                    return
-                }
-                $Path = "$HOME\.ssh\$Key"
-            }
-
-            Process {
-                if (Test-Path -Path $Path) {
-                    Write-Host "Key $Key exists" -ForegroundColor Green
-                    return $true
-                } else {
-                    Write-Host "Key $Key does not exist" -ForegroundColor Red
-                    return $false
-                }
-            }
+            if (-not (Test-Path -Path $Key.FullName)) { return $false }
+            return -not [string]::IsNullOrWhiteSpace((Get-Content -Path $Key.FullName -Raw))
         }
 
-        $Script:SSHConfigDir = "$env:USERPROFILE\.ssh"
-        $Script:SSHConfigFile = "$SSHConfigDir\config"
+        $script:SSHConfigDir = "$env:USERPROFILE\.ssh"
+        $script:SSHConfigFile = "$SSHConfigDir\config"
 
-        $Script:SSHKeys = Get-ChildItem -Path $SSHConfigDir -Filter 'id_*' -File
+        $script:SSHKeys = Get-ChildItem -Path $SSHConfigDir -Filter 'id_*' -File
 
-        $Script:RSAKeys = $SSHKeys | Where-Object { $_.Name -like 'id_rsa*' }
-        $Script:ECDSAKeys = $SSHKeys | Where-Object { $_.Name -like 'id_ed25519*' }
+        $script:RSAKeys = $SSHKeys | Where-Object { $_.Name -like 'id_rsa*' }
+        $script:ECDSAKeys = $SSHKeys | Where-Object { $_.Name -like 'id_ed25519*' }
     }
 
     It 'Checks ssh command is available' {
         Get-Command -Name 'ssh' | Should -Not -BeNull
-    }
-
-    It 'Checks that the SSH Agent is running' {
-        (Get-Service -Name ssh-agent).Status | Should -Be 'Running'
-    }
-
-    It 'Checks ssh-agent service is set to Automatic' {
-        (Get-Service -Name ssh-agent).StartType | Should -Be 'Automatic'
     }
 
     It 'Checks that the SSH directory exists' {
@@ -77,14 +56,14 @@ Describe 'Testing SSH Configuration and Keys' {
     }
 
     It 'Checks that the RSA keys are not empty' {
-        $RSAKeys | ForEach-Object {
-            Test-SSHKey -Key $_.Name | Should -Be $true
+        foreach ($Key in $RSAKeys) {
+            Test-SSHKeyNotEmpty -Key $Key | Should -BeTrue -Because "$($Key.Name) should contain key material"
         }
     }
 
     It 'Checks that the ECDSA keys are not empty' {
-        $ECDSAKeys | ForEach-Object {
-            Test-SSHKey -Key $_.Name | Should -Be $true
+        foreach ($Key in $ECDSAKeys) {
+            Test-SSHKeyNotEmpty -Key $Key | Should -BeTrue -Because "$($Key.Name) should contain key material"
         }
     }
 
@@ -101,14 +80,21 @@ Describe 'Testing SSH Configuration and Keys' {
 
 
 
-Describe 'GitHub SSH Checks' {
-    It 'Checks can connect to github via ssh' {
+Describe 'GitHub SSH Checks' -Tag 'System', 'SSH', 'RequiresNetwork' {
+    BeforeDiscovery {
+        # only relevant when SSH is actually configured for GitHub (a github host
+        # in ~/.ssh/config); skipped when GitHub is used over HTTPS instead
+        $SshConfig = Join-Path -Path $env:USERPROFILE -ChildPath '.ssh\config'
+        $script:SkipGitHubSsh = -not ((Test-Path -Path $SshConfig) -and (Select-String -Path $SshConfig -Pattern 'github' -Quiet))
+    }
 
-        $global:PSNativeCommandUseErrorActionPreference = $false
-        Invoke-Command -ScriptBlock { ssh -T 'git@ssh.github.com' } -ErrorAction Ignore
-        $LASTEXITCODE | Should -Be 1
-        $? | Should -Be $true
+    AfterAll {
         $global:PSNativeCommandUseErrorActionPreference = $true
+    }
 
+    It 'Checks can connect to github via ssh (validates key)' -Skip:$SkipGitHubSsh {
+        $global:PSNativeCommandUseErrorActionPreference = $false
+        ssh -T 'git@ssh.github.com' 2>&1 | Out-Null
+        $LASTEXITCODE | Should -Be 1 -Because 'GitHub closes the SSH session with exit code 1 after authenticating with a valid key'
     }
 }

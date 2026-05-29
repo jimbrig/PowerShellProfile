@@ -8,10 +8,10 @@
     This script contains tests to verify the installation and configuration of Windows Terminal on the system.
 #>
 
-Describe 'Windows Terminal Installation and Configuration' {
+Describe 'Windows Terminal Installation and Configuration' -Tag 'System', 'WindowsTerminal' {
     BeforeAll {
-        $Script:TerminalPath = "$Env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe"
-        $Script:SettingsPath = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+        $script:TerminalPath = "$Env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe"
+        $script:SettingsPath = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
     }
 
     It 'Checks that Windows Terminal is installed' {

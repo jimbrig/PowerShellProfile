@@ -1,21 +1,21 @@
-#Requires -Modules Pester
+#Requires -Module Pester
 
 <#
-.SYNOPSIS
-    Tests the global git configuration values.
-.DESCRIPTION
-    This script tests the global git configuration values to ensure that they are set to the expected
-    configuration values. The following configuration values are tested:
+    .SYNOPSIS
+        Tests the global git configuration values.
 
-    - user.email
-    - user.signingkey
-    - init.defaultBranch
-    - gpg.program
-    - commit.gpgSign
-    - tag.forceSignAnnotated
+    .DESCRIPTION
+        Verifies the global git configuration is set to the expected values:
+
+        - user.email is set and well-formed
+        - init.defaultBranch is "main"
+        - gpg.program is set and resolvable on PATH
+        - user.signingkey is set
+        - commit.gpgSign is true
+        - tag.forceSignAnnotated is true
 #>
 
-Describe 'Testing Git Configuration Values' {
+Describe 'Testing Git Configuration Values' -Tag 'System', 'Git' {
     BeforeAll {
         Function Get-GitConfigPath {
             $path = "$HOME\.gitconfig"
@@ -28,7 +28,10 @@ Describe 'Testing Git Configuration Values' {
         }
 
         Function Get-GitConfigValue($Key) {
-            git config --global --get $Key
+            # read the effective config (not --global): user keys live in the XDG
+            # file ~/.config/git/config, which `git config --global` does not read
+            # when ~/.gitconfig also exists
+            git config --get $Key
         }
 
         Function Test-Email($Email) {

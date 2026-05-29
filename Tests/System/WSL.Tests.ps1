@@ -8,9 +8,9 @@
     This script contains tests to verify the installation and configuration of WSL on the system.
 #>
 
-Describe 'WSL Installation and Configuration' {
+Describe 'WSL Installation and Configuration' -Tag 'System', 'WSL' {
     BeforeAll {
-        $Script:wslPath = "$Env:SystemRoot\System32\wsl.exe"
+        $script:wslPath = "$Env:SystemRoot\System32\wsl.exe"
     }
 
     It 'Checks that WSL is installed' {

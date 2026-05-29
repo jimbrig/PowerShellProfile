@@ -8,9 +8,9 @@
     This script contains tests to verify the installation and configuration of Visual Studio Code on the system.
 #>
 
-Describe 'Visual Studio Code Installation and Configuration' {
+Describe 'Visual Studio Code Installation and Configuration' -Tag 'System', 'VSCode' {
     BeforeAll {
-        $Script:vscodePath = "$Env:ProgramFiles\Microsoft VS Code\bin\code.cmd"
+        $script:vscodePath = "$Env:ProgramFiles\Microsoft VS Code\bin\code.cmd"
     }
 
     It 'Checks that Visual Studio Code is installed' {

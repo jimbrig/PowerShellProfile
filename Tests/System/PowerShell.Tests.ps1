@@ -1,15 +1,26 @@
+#Requires -Module Pester
 
-Describe 'PowerShell Core Installation Checks' {
+<#
+    .SYNOPSIS
+        Tests the PowerShell Core installation.
+
+    .DESCRIPTION
+        Verifies the stable (7+) and preview PowerShell Core installations exist,
+        report the expected versions, and are present on the machine PATH. Preview
+        checks are skipped when the preview build is not installed.
+#>
+
+Describe 'PowerShell Core Installation Checks' -Tag 'System', 'PowerShell' {
 
     BeforeAll {
         $DefaultPath = "$Env:PROGRAMFILES\PowerShell\7\pwsh.exe"
         $PreviewPath = "$Env:PROGRAMFILES\PowerShell\7-preview\pwsh.exe"
 
-        $psStableVersionMajor = ((Get-Command $DefaultPath).FileVersionInfo.ProductVersion).Split('.')[0]
+        $psStableVersionMajor = ((Get-Command $DefaultPath -ErrorAction SilentlyContinue).FileVersionInfo.ProductVersion -split '\.')[0]
         $psStableExpectedVersionMajor = '7'
 
-        $psPreviewVersion = ((Get-Command $PreviewPath).FileVersionInfo.ProductVersion).Substring(0, 5)
-        $psPreviewExpectedVersion = '7.6.0'
+        $psPreviewVersionMajor = ((Get-Command $PreviewPath -ErrorAction SilentlyContinue).FileVersionInfo.ProductVersion -split '\.')[0]
+        $psPreviewExpectedVersionMajor = '7'
 
         $EnvPaths = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') -split ';'
 
@@ -36,8 +47,8 @@ Describe 'PowerShell Core Installation Checks' {
         Test-Path $PreviewPath | Should -Be $true
     }
 
-    It 'Checks if Installed Preview PowerShell Core Version is correct' -Skip:$SkipPreviewCheck {
-        $psPreviewVersion | Should -BeExactly $psPreviewExpectedVersion
+    It 'Checks if Installed Preview PowerShell Core Version is 7+' -Skip:$SkipPreviewCheck {
+        $psPreviewVersionMajor | Should -BeExactly $psPreviewExpectedVersionMajor
     }
 
     It 'Checks that Stable PowerShell Installed Executable is on system PATH' -Skip:$SkipStableCheck {

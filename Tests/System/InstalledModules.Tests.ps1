@@ -5,12 +5,15 @@
     Tests for verifying the installation of commonly used PowerShell modules.
 
 .DESCRIPTION
-    This script contains tests to verify the installation and configuration of various commonly used PowerShell modules on the system.
+    Verifies the expected PowerShell modules are installed via PSResourceGet
+    (Get-InstalledPSResource). This deliberately does not fall back to
+    Get-Module -ListAvailable, so modules installed via the legacy
+    PowerShellGet/Install-Module are reported as missing and can be migrated.
 #>
 
-Describe 'Installed PowerShell Modules' {
+Describe 'Installed PowerShell Modules' -Tag 'System', 'Modules' {
 
-    It "Checks that the <ModuleName> module is installed" -ForEach @(
+    It 'Checks that the <_> module is installed' -ForEach @(
         'CompletionPredictor'
         'Configuration'
         'Microsoft.PowerShell.ConsoleGuiTools'
@@ -36,6 +39,9 @@ Describe 'Installed PowerShell Modules' {
         'PSWindowsUpdate'
         'Terminal-Icons'
     ) {
-        Get-InstalledPSResource -Name $_ | Should -Not -BeNullOrEmpty
+        # intentionally Get-InstalledPSResource only: modules should be installed
+        # via PSResourceGet, not the legacy PowerShellGet/Install-Module
+        Get-InstalledPSResource -Name $_ -ErrorAction SilentlyContinue |
+        Should -Not -BeNullOrEmpty -Because "the '$_' module should be installed via PSResourceGet"
     }
 }
