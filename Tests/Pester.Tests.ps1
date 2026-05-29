@@ -14,14 +14,20 @@
 [CmdletBinding()]
 param()
 
+# resolve repo root so the suite runs regardless of the current working directory
+$RepoRoot = Split-Path -Path $PSScriptRoot -Parent
+
 # ensure test results directory exists
 $TestResultsPath = Join-Path -Path $PSScriptRoot -ChildPath 'TestResults'
 if (-not (Test-Path -Path $TestResultsPath)) {
     New-Item -Path $TestResultsPath -ItemType Directory -Force | Out-Null
 }
 
-# load and run pester configuration
+# load pester configuration and rebase its relative paths onto the repo root
 $PesterConfigData = Import-PowerShellDataFile -Path "$PSScriptRoot\PesterConfig.psd1"
+$PesterConfigData.Run.Path = @($PesterConfigData.Run.Path | ForEach-Object { Join-Path -Path $RepoRoot -ChildPath $_ })
+$PesterConfigData.TestResult.OutputPath = Join-Path -Path $RepoRoot -ChildPath $PesterConfigData.TestResult.OutputPath
+
 $PesterConfig = New-PesterConfiguration -HashTable $PesterConfigData
 
 Write-Verbose 'Running Pester tests...'
